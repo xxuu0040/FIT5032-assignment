@@ -1,0 +1,82 @@
+﻿@model IEnumerable<FIT5032_Assignment1.Models.Hotel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location1.Location_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total_room_num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available_num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location1.Location_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_room_num)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available_num)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "Index","Bookings",new { id = item.Hotel_id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/responsive.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />

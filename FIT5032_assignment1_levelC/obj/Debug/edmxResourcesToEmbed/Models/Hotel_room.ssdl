@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Hotels" EntityType="Model1.Store.Hotels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="Model1.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="HotelRoom" Association="Model1.Store.HotelRoom">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hotels">
+    <Key>
+      <PropertyRef Name="Hotel_Id" />
+    </Key>
+    <Property Name="Hotel_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hotel_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Total_room_num" Type="int" Nullable="false" />
+    <Property Name="Available_num" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Room_Id" />
+      <PropertyRef Name="HotelHotel_Id" />
+    </Key>
+    <Property Name="Room_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Room_type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Room_status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Room_price" Type="int" Nullable="false" />
+    <Property Name="HotelHotel_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="HotelRoom">
+    <End Role="Hotel" Type="Model1.Store.Hotels" Multiplicity="1" />
+    <End Role="Room" Type="Model1.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Hotel_Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="HotelHotel_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
