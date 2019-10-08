@@ -1,0 +1,94 @@
+﻿@model IEnumerable<FIT5032_Assignment1.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Select Room</h2>
+
+@if (User.IsInRole("Admin"))
+{
+     <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Room_id)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel.Hotel_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room_type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room_price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room_id)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel.Hotel_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room_price)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Select", "Create", "Bookings", new { Hotel_id = item.Hotel_id, Room_id = item.Room_id }, null)|
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            } else
+            {
+                <td>
+                    @Html.ActionLink("Select", "Create","Bookings", new { Hotel_id = item.Hotel_id, Room_id = item.Room_id}, null)
+                </td>
+            }
+
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts {
+
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+<script>
+     $(document).ready(function () {
+         $('.table').DataTable();
+     });
+</script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

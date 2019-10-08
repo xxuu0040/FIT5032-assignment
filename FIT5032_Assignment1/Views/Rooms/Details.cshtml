@@ -1,0 +1,51 @@
+﻿@model FIT5032_Assignment1.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hotel.Hotel_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hotel.Hotel_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room_price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FIT5032_Assignment1.Models.Booking>
+
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<h2>Calendar</h2>
+
+<div id="calendar"></div>
+<div style="display: none">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Hotel.Hotel_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Room_type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Checkin_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Checkout_date)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="booking">
+                <td class="hotel_name">
+                    @Html.DisplayFor(modelItem => item.Room.Hotel.Hotel_name)
+                </td>
+                <td class="room_id">
+                    @Html.DisplayFor(modelItem => item.Room_id)
+                </td>
+                <td class="room_type">
+                    @Html.DisplayFor(modelItem => item.Room.Room_type)
+                </td>
+                <td class="checkin_date">
+                    @Html.DisplayFor(modelItem => item.Checkin_date)
+                </td>
+                <td class="checkout_date">
+                    @Html.DisplayFor(modelItem => item.Checkout_date)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@section Scripts{
+    <script src="~/Scripts/lib/jquery.min.js"></script>
+    <script src="~/Scripts/lib/jquery-ui.min.js"></script>
+    <script src="~/Scripts/lib/moment.min.js"></script>
+    <script src="~/Scripts/calendar.js"></script>
+    <script src="~/Scripts/fullcalendar.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}
